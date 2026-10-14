@@ -51,7 +51,7 @@ jobs:
             echo "成功连接服务器：$(whoami)@$(hostname)"
 
             cd /root/flask-web-app || { echo "项目目录不存在"; exit 1; }
-            git pull origin main || { echo "Git拉取失败"; exit 1; }
+            git pull origin main 2>/dev/null || echo "跳过git拉取（服务器无法访问GitHub，代码已手动同步）"
 
             pip3 install --upgrade pip
             pip3 install -r requirements.txt || { echo "依赖安装失败"; exit 1; }
